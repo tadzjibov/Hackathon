@@ -9,23 +9,46 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  ListView,
 } from 'react-native';
 
+import LineChart from './src/LineChart'
+import CashFlowItem from './src/CashFlowItem'
+
+const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid !== r2.guid})
+
 export default class Volksbank extends Component {
+   constructor(props) {
+    super(props);
+      data= [
+       {cash:15,    name:'bank1'},
+       {cash: -20,  name:'bank2'},
+       {cash: -100, name:'bank3'},
+       {cash: 100,  name:'bank4'},
+       {cash: 50,   name:'bank5'},
+       {cash: 60,   name:'bank6'},
+      ]
+    this.state = {
+      dataSource: dataSource.cloneWithRows(data),
+    }
+  }
+
+  createRow(rowData) {
+    return (
+      <CashFlowItem cashData={rowData} />
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+        <LineChart style={{}} backgroundColor='red' width={800} height={400} />
+        <ListView
+          style={{flex:1}}
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => this.createRow(rowData)}
+        />
       </View>
     );
   }
