@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import FontAwesome  from 'react-native-vector-icons/FontAwesome';
+import FontAwesome  from 'react-native-vector-icons/EvilIcons';
 
 class IconButton extends React.Component {
 
