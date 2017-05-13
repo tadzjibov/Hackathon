@@ -26,18 +26,18 @@ advice(positive){
         );
     }else{
         return (
-            <View>
-        <View flexDirection='row' alignItems= 'center' justifyContent = 'center'>
-            <IconButton
-            onPress={() => this.minCircle()}
-            name="times"
-            fontSize = {50}
-            alignItems = 'center'
-            justifyContent = 'center'
-            margin = {5}
-            color = {'#f05e69'}
-          />
-          </View>
+        <View>
+            <View flexDirection='row' alignItems= 'center' justifyContent = 'center'>
+                <IconButton
+                onPress={() => this.minCircle()}
+                name="times"
+                fontSize = {50}
+                alignItems = 'center'
+                justifyContent = 'center'
+                margin = {5}
+                color = {'#f05e69'}
+                />
+            </View>
           <Text style = {{color: '#f05e69', fontSize: 16}}>Get advice bro!</Text>
         </View>
         );
