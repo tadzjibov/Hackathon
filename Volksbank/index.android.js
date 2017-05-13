@@ -16,12 +16,8 @@ import {
 
 import LineChart from './src/LineChart'
 import CashFlowItem from './src/CashFlowItem'
-<<<<<<< HEAD
-import IconButton from './src/IconButton'
-
-=======
 import GradientBackground from './src/GradientBackground'
->>>>>>> origin/upperUIPart
+import LowerUI from './src/LowerUI'
 
 const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid })
 
@@ -64,6 +60,7 @@ export default class Volksbank extends Component {
         />
         <GradientBackground />
         <LineChart style={{}} backgroundColor='red' width={800} height={400} />
+        <LowerUI/>
       </View>
     );
   }
