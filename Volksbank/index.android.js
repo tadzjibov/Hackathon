@@ -11,24 +11,26 @@ import {
   Text,
   View,
   ListView,
+  StatusBar,
 } from 'react-native';
 
 import LineChart from './src/LineChart'
 import CashFlowItem from './src/CashFlowItem'
+import GradientBackground from './src/GradientBackground'
 
-const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid !== r2.guid})
+const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid })
 
 export default class Volksbank extends Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
-      data= [
-       {cash:15,    name:'bank1'},
-       {cash: -20,  name:'bank2'},
-       {cash: -100, name:'bank3'},
-       {cash: 100,  name:'bank4'},
-       {cash: 50,   name:'bank5'},
-       {cash: 60,   name:'bank6'},
-      ]
+    data = [
+      { cash: 15, name: 'bank1' },
+      { cash: -20, name: 'bank2' },
+      { cash: -100, name: 'bank3' },
+      { cash: 100, name: 'bank4' },
+      { cash: 50, name: 'bank5' },
+      { cash: 60, name: 'bank6' },
+    ]
     this.state = {
       dataSource: dataSource.cloneWithRows(data),
     }
@@ -43,12 +45,12 @@ export default class Volksbank extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <LineChart style={{}} backgroundColor='red' width={800} height={400} />
-        <ListView
-          style={{flex:1}}
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => this.createRow(rowData)}
+        <StatusBar
+          backgroundColor='transparent'
+          translucent={true}
         />
+        <GradientBackground />
+        <LineChart style={{}} backgroundColor='red' width={800} height={400} />
       </View>
     );
   }

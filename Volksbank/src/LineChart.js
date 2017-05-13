@@ -114,7 +114,7 @@ createArrow(positive){
             }}
           >
               <Defs>
-                  <LinearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <LinearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
                       <Stop offset="0%" stopColor={this.props.colorUp} stopOpacity="1" />
                       <Stop offset="100%" stopColor={this.props.colorDown} stopOpacity="1" />
                   </LinearGradient>
@@ -135,7 +135,7 @@ createArrow(positive){
 }
 
 LineChart.defaultProps = {
-    colorUp: '#3ae3bc',
-    colorDown: '#f05e69',
+    colorUp: '#066ad2',
+    colorDown: '#ffffff',
     points: [{x:100, y:100},{x:160, y:119},{x:220, y:48},{x:280, y:112},{x:340, y:28},{x:400, y:119},{x:460, y:142},{x:520, y:22},{x:580, y:33},{x:640, y:61}],
 }
