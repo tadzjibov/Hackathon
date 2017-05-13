@@ -59,6 +59,9 @@ export default class Volksbank extends Component {
           translucent={true}
         />
         <GradientBackground />
+        <Text style={{fontFamily:'sans-serif-thin', fontSize: 40, color: '#e5eef9'}}>
+          May 2017
+        </Text>
         <LineChart style={{}} backgroundColor='red' width={800} height={400} />
         <LowerUI/>
       </View>
@@ -72,6 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: 50,
   },
   welcome: {
     fontSize: 20,
