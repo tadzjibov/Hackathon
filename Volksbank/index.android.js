@@ -15,6 +15,8 @@ import {
 
 import LineChart from './src/LineChart'
 import CashFlowItem from './src/CashFlowItem'
+import IconButton from './src/IconButton'
+
 
 const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid !== r2.guid})
 
@@ -40,6 +42,14 @@ export default class Volksbank extends Component {
     );
   }
 
+  plusCircle(){
+
+  }
+
+   minCircle(){
+    
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -49,6 +59,34 @@ export default class Volksbank extends Component {
           dataSource={this.state.dataSource}
           renderRow={(rowData) => this.createRow(rowData)}
         />
+        <View flexDirection = 'row'>
+        <IconButton
+            name="user"
+            fontSize = {45}
+            margin = {5}
+            color = {'#009CDE'}
+          />
+          <IconButton
+            onPress={() => this.plusCircle()}
+            name="plus-circle"
+            fontSize = {22}
+            margin = {5}
+            color = {'#3ae3bc'}
+          />
+           <IconButton
+            name="user"
+            fontSize = {45}
+            margin = {5}
+            color = {'#009CDE'}
+          />
+          <IconButton
+            onPress={() => this.minCircle()}
+            name="minus-circle"
+            fontSize = {22}
+            margin = {5}
+            color = {'#f05e69'}
+          />
+          </View>
       </View>
     );
   }
