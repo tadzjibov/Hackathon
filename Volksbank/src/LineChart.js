@@ -21,20 +21,28 @@ import Svg, {
 
 const dashMax = 1000;
 var x = 1;
+const xStep = 5;
 export default class LineChart extends React.Component {
   constructor(props) {
     super(props);
     x = 1;
     this.state = {
       progress: new Animated.Value(dashMax),
+      progressPred: new Animated.Value(dashMax),
       dash: dashMax,
+      dashPred: dashMax,
       currentPointSizeAnim: new Animated.Value(0),
       currentPointSize: 0,
     };
     this.state.progress.addListener(({ value }) => {
       this.setState({ dash: value });
       this.scrollView.scrollTo({ x: x, y: 0, animated: true });
-      x += 3;
+      x += xStep;
+    });
+    this.state.progressPred.addListener(({ value }) => {
+      this.setState({ dashPred: value });
+      this.scrollView.scrollTo({ x: x, y: 0, animated: true });
+      x += xStep;
     });
     this.state.currentPointSizeAnim.addListener(({ value }) => {
       this.setState({ currentPointSize: value });
@@ -56,7 +64,12 @@ export default class LineChart extends React.Component {
         toValue: 5,
         friction: 3,
         useNativeDriver: true,
-      })
+      }),
+      Animated.timing(this.state.progressPred, {
+        toValue: 5,
+        duration: duration,
+        easing: Easing.linear,
+      }),
     ]).start();
   }
 
@@ -99,7 +112,7 @@ export default class LineChart extends React.Component {
     return (
       <ScrollView
         horizontal={true}
-        style={{ flex: 1, margin: 10 }}
+        style={{ flex: 1, marginTop: 10, marginBottom: 10 }}
         ref={component => this.scrollView = component}
         contentContainerStyle={{ flexGrow: 1 }}
       >
@@ -120,6 +133,11 @@ export default class LineChart extends React.Component {
             <G id="cartesian" >
               <G id='realPath' stroke="url(#grad)" strokeLinecap='round' strokeWidth="1.5" strokeDasharray={[dashMax, dashMax]} strokeDashoffset={this.state.dash} fill="none">
                 {this.createPath(this.props.realPoints)}
+
+              </G>
+              <G id='predictedPath' stroke='#FE6847' strokeLinecap='round' strokeWidth="2" strokeDasharray={[dashMax, dashMax]} strokeDashoffset={this.state.dashPred} fill="none">
+                {this.createPath(this.props.predictedPoints)}
+              </G>
                 <Circle
                   cx={lastPoint.x}
                   cy={lastPoint.y}
@@ -127,12 +145,7 @@ export default class LineChart extends React.Component {
                   stroke="none"
                   fill={this.props.colorDown}
                 />
-              </G>
-              <G id='predictedPath' stroke='#ffffff' strokeLinecap='round' strokeWidth="1.5" strokeDasharray={[2, 5]} strokeDashoffset={2} fill="none">
-                {this.createPath(this.props.predictedPoints)}
-              </G>
             </G>
-            {/*{this.state.paths}*/}
           </Svg>
         </View>
       </ScrollView>
@@ -141,7 +154,7 @@ export default class LineChart extends React.Component {
 }
 
 LineChart.defaultProps = {
-  colorUp: '#066ad2',
+  colorUp: '#ffffff',//'#066ad2',
   colorDown: '#ffffff',
   realPoints: [{ x: 100, y: 100 }, { x: 160, y: 119 }, { x: 220, y: 48 }, { x: 280, y: 112 }, { x: 340, y: 28 }, { x: 400, y: 119 }, { x: 460, y: 142 }, { x: 520, y: 22 }, { x: 580, y: 33 }, { x: 640, y: 61 }],
   predictedPoints : [{ x: 640, y: 61 }, { x: 700, y: 100 }, { x: 760, y: 261 }]

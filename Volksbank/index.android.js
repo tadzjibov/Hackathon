@@ -43,27 +43,22 @@ export default class Volksbank extends Component {
     );
   }
 
-  plusCircle(){
-
-  }
-
-   minCircle(){
-    
-  }
-
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container]}>
         <StatusBar
           backgroundColor='transparent'
           translucent={true}
+          style = {{elevation: 15, }}
         />
-        <GradientBackground />
-        <Text style={{fontFamily:'sans-serif-thin', fontSize: 40, color: '#e5eef9'}}>
-          May 2017
+        {/*<GradientBackground />*/}
+        <View style={[styles.container, {marginTop:-50, flex: 1, elevation: 15, }]}>
+          <Text style={{ fontFamily: 'sans-serif-thin', fontSize: 40, color: '#e5eef9' }}>
+            May 2017
         </Text>
-        <LineChart style={{}} backgroundColor='red' width={800} height={400} />
-        <LowerUI/>
+          <LineChart style={{}} backgroundColor='red' width={800} height={400} />
+        </View>
+        <LowerUI />
       </View>
     );
   }
@@ -74,7 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#009cde',//'#25bdab',//'#F5FCFF',
     paddingTop: 50,
   },
   welcome: {
