@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Text, Animated, Easing} from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text, Animated, Easing, Dimensions} from 'react-native';
 import FontAwesome  from 'react-native-vector-icons/EvilIcons';
 import IconButton from '../src/IconButton'
 
@@ -13,71 +13,67 @@ class LowerUI extends React.Component {
       spinValue: ""
     };
 
-// Second interpolate beginning and end values (in this case 0 and 1)
-const spin = this.state.spinValue.interpolate({
-  inputRange: [0, 1],
-  outputRange: ['0deg', '360deg']
-})
+// // Second interpolate beginning and end values (in this case 0 and 1)
+// const spin = this.state.spinValue.interpolate({
+//   inputRange: [0, 1],
+//   outputRange: ['0deg', '360deg']
+// })
   }
 
-componentDidMount() {
-    this.play(0, 5000);
-  }
+// componentDidMount() {
+//     this.play(0, 5000);
+//   }
 
-   play(toValue, duration) {
-  Animated.timing(
-    this.state.spinValue,
-  {
-    toValue: 0,
-    duration: 5000,
-    easing: Easing.linear
-  }
-  ).start()
-  }
+//    play(toValue, duration) {
+//   Animated.timing(
+//     this.state.spinValue,
+//   {
+//     toValue: 0,
+//     duration: 5000,
+//     easing: Easing.linear
+//   }
+//   ).start()
+//   }
 
 advice(positive){
     if(positive){
         return(   
-            <View>
-        <View flexDirection='row' alignItems= 'center' justifyContent = 'center'>
+          <View flexDirection='column' alignItems= 'center' justifyContent = 'center'>
             <IconButton
             onPress={() => this.minCircle()}
             name="check"
-            fontSize = {70}
+            fontSize = {40}
             alignItems = 'center'
             justifyContent = 'center'
-            margin = {5}
+            margin = {8}
             color = {'#59CD90'}
           />
-        </View>
-        <Text style = {{color: '#59CD90', fontSize: 16}}>You're fine bro. Go spend on chicks!</Text>
+        <Text style = {{color: '#59CD90', fontSize: 35, alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif-thin'}}>Steady</Text>
         </View>
         );
     }else{
         return (
-        <View>
-            <View flexDirection='row' alignItems= 'center' justifyContent = 'center'>
-                <Animated.IconButton
-                style={{transform: [{rotate: spin}] }}
+            <View flexDirection='column' alignItems= 'center' justifyContent = 'center'>
+                <IconButton
                 onPress={() => this.minCircle()}
-                name = {this.state.icon}
-                fontSize = {70}
+                name = "close"
+                fontSize = {40}
                 alignItems = 'center'
                 justifyContent = 'center'
-                margin = {5}
-                color = {'#EE6352'}
+                margin = {8}
+                color = {'#Da4453'}
                 />
-            </View>
-          <Text style = {{color: '#EE6352', fontSize: 16}}>Get advice bro!</Text>
+          <Text style = {{color: '#Da4453', fontSize: 35, alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif-thin'}}>Advise me</Text>
         </View>
         );
     }
 }
   render() {
     return (
-      <View flexDirection = 'row'>
+      <View flexDirection = 'column' alignItems = 'center' justifyContent = 'center' backgroundColor = '#E6E9ED' width = {Dimensions.get('window').width}>
+            <Text style = {{color: '#656D78', fontSize: 64, fontFamily: 'sans-serif-thin'}}>€5000</Text>
            {this.advice(false)}
-          </View>
+      </View>
     );
   }
 }
