@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Animated, Easing, Dimensions} from 'react-native';
-import FontAwesome  from 'react-native-vector-icons/EvilIcons';
+import FontAwesome  from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconButton from '../src/IconButton'
 
 
