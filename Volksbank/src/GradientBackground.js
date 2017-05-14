@@ -23,7 +23,7 @@ export default class GradientBackground extends React.Component {
         
         const d = "M-"+size+",0 L"+size*2+",0 L"+size*2+","+size+" L0,"+size+" Z";
         return (
-            <View style={{ position: 'absolute'  }}>
+            <View style={{position: 'absolute'  }}>
                 <Svg height={size} width={size*3}>
                     <Defs>
                         <LinearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">

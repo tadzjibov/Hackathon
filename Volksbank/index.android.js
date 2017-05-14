@@ -12,6 +12,8 @@ import {
   View,
   ListView,
   StatusBar,
+  Animated,
+  Easing,
 } from 'react-native';
 
 import LineChart from './src/LineChart'
@@ -34,7 +36,20 @@ export default class Volksbank extends Component {
     ]
     this.state = {
       dataSource: dataSource.cloneWithRows(data),
+      day: 1,
+      dayAnim: new Animated.Value(1),
     }
+    this.state.dayAnim.addListener(({ value }) => {
+      this.setState({ day: value });
+    });
+  }
+
+  componentDidMount() {
+    Animated.timing(this.state.dayAnim, {
+      toValue: 31,
+      duration: 4500,
+      easing: Easing.linear,
+    }).start();
   }
 
   createRow(rowData) {
@@ -43,27 +58,22 @@ export default class Volksbank extends Component {
     );
   }
 
-  plusCircle(){
-
-  }
-
-   minCircle(){
-    
-  }
-
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container]}>
         <StatusBar
           backgroundColor='transparent'
           translucent={true}
+          style={{ elevation: 15, }}
         />
-        <GradientBackground />
-        <Text style={{fontFamily:'sans-serif-thin', fontSize: 40, color: '#e5eef9'}}>
-          May 2017
+        {/*<GradientBackground />*/}
+        <View style={[styles.container, { marginTop: -50, flex: 1, elevation: 15, }]}>
+          <Text style={{ fontFamily: 'sans-serif-thin', fontSize: 40, color: '#e5eef9' }}>
+            {Math.round(this.state.day)} May 2016
         </Text>
-        <LineChart style={{}} backgroundColor='red' width={800} height={400} />
-        <LowerUI/>
+          <LineChart style={{}} width={600} height={500} />
+        </View>
+        <LowerUI />
       </View>
     );
   }
@@ -74,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#009cde',//'#25bdab',//'#F5FCFF',
     paddingTop: 50,
   },
   welcome: {
