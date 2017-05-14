@@ -35,6 +35,32 @@ class LowerUI extends React.Component {
 //   ).start()
 //   }
 
+// 1
+
+// Vraag de bank een seintje te geven als je rood staat, zuiver aan met spaargeld
+
+// 2
+
+// Laat de bank je tekort automatisch aanvullen uit je spaarrekening
+
+// 3
+
+// Leg een buffer aan voor onverwachte grote uitgaven
+
+// 4
+
+// Pas je uitgaven en/of inkomsten aan
+
+// 5
+
+// Zet je kredietlimiet op nul
+
+// 6
+
+// Ga een persoonlijke lening aan
+
+// 7
+
 advice(positive){
     if(positive){
         return(   
